@@ -1,0 +1,39 @@
+version: 2
+
+sources: 
+    - name: stage_food_composition
+      description: food composition database
+      database: oliver_db
+      tables:
+        - name: food
+          description: food data
+          columns:
+            - name: fdc_id
+              description: Primary Key for Food
+              tests:
+                - unique
+                - not_null
+        - name: nutrient
+          description: nutrient dimension
+          columns:
+            - name: id
+              description: nutrient id PK
+              tests:
+                - unique
+                - not_null
+        - name: food_nutrient
+          description: join food to nutrient
+          columns:
+            - name: id
+              description: table PK
+              tests:
+                - unique
+                - not_null
+            - name: fdc_id
+              description: fdc FK
+              tests:
+                - not_null
+            - name: nutrient_id
+              description: nutrient FK
+              tests:
+                - not_null
